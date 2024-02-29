@@ -10,6 +10,10 @@ public class PlayerMovement : MonoBehaviour
 	float speedX, speedY;
 	bool isRunningX = false;
 	bool isRunningY = false;
+	private static bool isCollidingRight = false;
+	private static bool isCollidingLeft = false;
+	private static bool isCollidingUp = false;
+	private static bool isCollidingDown = false;
 	Rigidbody2D rb;
 	// Start is called before the first frame update
 	void Start()
@@ -29,7 +33,30 @@ public class PlayerMovement : MonoBehaviour
 			StartCoroutine(moveY());
 		}
 
-		rb.velocity = new Vector2(speedX, speedY);
+		if ((isCollidingLeft && speedX < 0) || (isCollidingRight && speedX > 0))
+		{
+			exponentX = 0;
+		}
+
+		if ((isCollidingDown && speedY < 0) || (isCollidingUp && speedY > 0))
+		{
+			exponentY = 0;
+		}
+
+		if(Input.GetAxisRaw("Horizontal") != 0 && Input.GetAxisRaw("Vertical") != 0)
+		{
+			rb.velocity = new Vector2(speedX / 1.1f, speedY / 1.1f);
+		}
+		else
+		{
+			rb.velocity = new Vector2(speedX, speedY);
+		}
+		
+
+		print("Right: " + isCollidingRight.ToString());
+		print("Left: " + isCollidingLeft.ToString());
+		print("Up: " + isCollidingUp.ToString());
+		print("Down: " + isCollidingDown.ToString());
 	}
 	
 	IEnumerator moveX()
@@ -73,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 			}
 			yield return new WaitForSeconds(0.025f);
 		}
-		else if (Input.GetAxisRaw("Horizontal") == 0)
+		else
 		{
 			if (exponentX < 0)
 			{
@@ -89,7 +116,6 @@ public class PlayerMovement : MonoBehaviour
 			{
 				speedX = 0f;
 			}
-			
 			yield return new WaitForSeconds(0.05f);
 		}
 		isRunningX = false;
@@ -156,6 +182,25 @@ public class PlayerMovement : MonoBehaviour
 			yield return new WaitForSeconds(0.05f);
 		}
 		isRunningY = false;
-		print(speedY);
+	}
+	
+	public static void collisionRight(bool isColliding)
+	{
+		isCollidingRight = isColliding;
+	}
+	
+	public static void collisionLeft(bool isColliding)
+	{
+		isCollidingLeft = isColliding;
+	}
+	
+	public static void collisionUp(bool isColliding)
+	{
+		isCollidingUp = isColliding;
+	}
+	
+	public static void collisionDown(bool isColliding)
+	{
+		isCollidingDown = isColliding;
 	}
 }
