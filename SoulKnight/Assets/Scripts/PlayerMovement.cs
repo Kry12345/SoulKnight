@@ -51,12 +51,6 @@ public class PlayerMovement : MonoBehaviour
 		{
 			rb.velocity = new Vector2(speedX, speedY);
 		}
-		
-
-		print("Right: " + isCollidingRight.ToString());
-		print("Left: " + isCollidingLeft.ToString());
-		print("Up: " + isCollidingUp.ToString());
-		print("Down: " + isCollidingDown.ToString());
 	}
 	
 	IEnumerator moveX()
