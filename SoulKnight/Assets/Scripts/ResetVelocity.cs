@@ -5,6 +5,12 @@ using UnityEngine;
 public class ResetVelocity : MonoBehaviour
 {
 	public wallDirection direction;
+	PlayerMovement playerMovement;
+
+	void Start()
+	{
+		playerMovement = gameObject.transform.parent.GetComponentInParent<PlayerMovement>();
+	}
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
@@ -12,19 +18,19 @@ public class ResetVelocity : MonoBehaviour
 		{
 			if(direction == wallDirection.Right)
 			{
-				PlayerMovement.collisionRight(true);
+				playerMovement.collisionRight(true);
 			}
 			else if (direction == wallDirection.Left)
 			{
-				PlayerMovement.collisionLeft(true);
+				playerMovement.collisionLeft(true);
 			}
 			else if (direction == wallDirection.Up)
 			{
-				PlayerMovement.collisionUp(true);
+				playerMovement.collisionUp(true);
 			}
 			else
 			{
-				PlayerMovement.collisionDown(true);
+				playerMovement.collisionDown(true);
 			}
 		}
 	}
@@ -35,19 +41,19 @@ public class ResetVelocity : MonoBehaviour
 		{
 			if(direction == wallDirection.Right)
 			{
-				PlayerMovement.collisionRight(false);
+				playerMovement.collisionRight(false);
 			}
 			else if (direction == wallDirection.Left)
 			{
-				PlayerMovement.collisionLeft(false);
+				playerMovement.collisionLeft(false);
 			}
 			else if (direction == wallDirection.Up)
 			{
-				PlayerMovement.collisionUp(false);
+				playerMovement.collisionUp(false);
 			}
 			else
 			{
-				PlayerMovement.collisionDown(false);
+				playerMovement.collisionDown(false);
 			}
 		}
 	}

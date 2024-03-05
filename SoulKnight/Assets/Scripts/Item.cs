@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public items itemType;
+    [SerializeField] items item;
+
+    public items itemType()
+    {
+        return item;
+    }
 }
+
+
 
 public enum items
 {
     empty,
     sword,
     pistol,
-    magicWand
+    magicWand,
+    gun
 }
 

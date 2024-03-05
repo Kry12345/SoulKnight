@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    private float health;
-    private items[] inventory = {items.empty, items.empty, items.empty, items.empty, items.empty, items.empty};
+    float health;
+    items[] inventory = {items.empty, items.empty, items.empty, items.gun, items.empty, items.empty};
 
+    public items[] getInventory()
+    {
+        return inventory;
+    }
+    
     void Update()
     {
 

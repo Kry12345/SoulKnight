@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-	public float speed = 1.01f;
+	[SerializeField] float speed = 1.01f;
 	double exponentX, exponentY;
 	float speedX, speedY;
 	bool isRunningX = false;
 	bool isRunningY = false;
-	private static bool isCollidingRight = false;
-	private static bool isCollidingLeft = false;
-	private static bool isCollidingUp = false;
-	private static bool isCollidingDown = false;
+	bool isCollidingRight = false;
+	bool isCollidingLeft = false;
+	bool isCollidingUp = false;
+	bool isCollidingDown = false;
 	Rigidbody2D rb;
 	// Start is called before the first frame update
 	void Start()
@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
 				speedX = (float)Math.Pow(speed, Math.Abs(exponentX));
 				exponentX++;
 			}
-			yield return new WaitForSeconds(0.025f);
+			yield return new WaitForSeconds(0.012f);
 		}
 		else if (Input.GetAxisRaw("Horizontal") > 0)
 		{
@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
 				speedX = -(float)Math.Pow(speed, Math.Abs(exponentX));
 				exponentX--;
 			}
-			yield return new WaitForSeconds(0.025f);
+			yield return new WaitForSeconds(0.012f);
 		}
 		else
 		{
@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
 			{
 				speedX = 0f;
 			}
-			yield return new WaitForSeconds(0.05f);
+			yield return new WaitForSeconds(0.025f);
 		}
 		isRunningX = false;
 	}
@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
 				speedY = (float)Math.Pow(speed, Math.Abs(exponentY));
 				exponentY++;
 			}
-			yield return new WaitForSeconds(0.025f);
+			yield return new WaitForSeconds(0.012f);
 		}
 		else if (Input.GetAxisRaw("Vertical") > 0)
 		{
@@ -154,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
 				speedY = -(float)Math.Pow(speed, Math.Abs(exponentY));
 				exponentY--;
 			}
-			yield return new WaitForSeconds(0.025f);
+			yield return new WaitForSeconds(0.012f);
 		}
 		else if (Input.GetAxisRaw("Vertical") == 0)
 		{
@@ -173,27 +173,27 @@ public class PlayerMovement : MonoBehaviour
 				speedY = 0f;
 			}
 			
-			yield return new WaitForSeconds(0.05f);
+			yield return new WaitForSeconds(0.025f);
 		}
 		isRunningY = false;
 	}
 	
-	public static void collisionRight(bool isColliding)
+	public void collisionRight(bool isColliding)
 	{
 		isCollidingRight = isColliding;
 	}
 	
-	public static void collisionLeft(bool isColliding)
+	public void collisionLeft(bool isColliding)
 	{
 		isCollidingLeft = isColliding;
 	}
 	
-	public static void collisionUp(bool isColliding)
+	public void collisionUp(bool isColliding)
 	{
 		isCollidingUp = isColliding;
 	}
 	
-	public static void collisionDown(bool isColliding)
+	public void collisionDown(bool isColliding)
 	{
 		isCollidingDown = isColliding;
 	}

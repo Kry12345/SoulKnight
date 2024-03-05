@@ -9,7 +9,7 @@ public class PlayerHitboxInteractions : MonoBehaviour
         Item itemProperty = col.gameObject.GetComponent<Item>();
         if (itemProperty != null)
         {
-            print(itemProperty.itemType);
+            print(itemProperty.itemType());
         }
     }
 }
