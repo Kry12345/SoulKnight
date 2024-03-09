@@ -1,11 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerMovement : MonoBehaviour
-{
-	[SerializeField] float speed = 1.01f;
+ [SerializeField] float speed = 1.01f;
 	double exponentX, exponentY;
 	float speedX, speedY;
 	bool isRunningX = false;
@@ -14,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 	bool isCollidingLeft = false;
 	bool isCollidingUp = false;
 	bool isCollidingDown = false;
+	bool isKnockedBack = false;
 	Rigidbody2D rb;
 	// Start is called before the first frame update
 	void Start()
@@ -47,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 		{
 			rb.velocity = new Vector2(speedX / 1.1f, speedY / 1.1f);
 		}
-		else
+		else if (!isKnockedBack)
 		{
 			rb.velocity = new Vector2(speedX, speedY);
 		}
@@ -197,4 +191,82 @@ public class PlayerMovement : MonoBehaviour
 	{
 		isCollidingDown = isColliding;
 	}
-}
+
+	public void knockback(float x, float y, float multiplier)
+	{
+		rb.velocity = new Vector2(x * multiplier, y * multiplier);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public wallDirection direction;
+	PlayerMovement playerMovement;
+
+	void Start()
+	{
+		playerMovement = gameObject.transform.parent.GetComponentInParent<PlayerMovement>();
+	}
+
+	void OnTriggerEnter2D(Collider2D col)
+	{
+		if(col.gameObject.layer == 3)
+		{
+			if(direction == wallDirection.Right)
+			{
+				playerMovement.collisionRight(true);
+			}
+			else if (direction == wallDirection.Left)
+			{
+				playerMovement.collisionLeft(true);
+			}
+			else if (direction == wallDirection.Up)
+			{
+				playerMovement.collisionUp(true);
+			}
+			else
+			{
+				playerMovement.collisionDown(true);
+			}
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D col)
+	{
+		if(col.gameObject.layer == 3)
+		{
+			if(direction == wallDirection.Right)
+			{
+				playerMovement.collisionRight(false);
+			}
+			else if (direction == wallDirection.Left)
+			{
+				playerMovement.collisionLeft(false);
+			}
+			else if (direction == wallDirection.Up)
+			{
+				playerMovement.collisionUp(false);
+			}
+			else
+			{
+				playerMovement.collisionDown(false);
+			}
+		}
+	}
+
+	public enum wallDirection
+	{
+		Right,
+		Left,
+		Up,
+		Down
+	}

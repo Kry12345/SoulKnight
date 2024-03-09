@@ -20,7 +20,6 @@ public class DisplayInventorySlots : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(playerStats.getInventory());
         if (playerStats.getInventory()[(int)inventorySlot] == items.gun)
         {
             image.sprite = itemInfo.getGunImg();
