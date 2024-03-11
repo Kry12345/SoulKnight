@@ -72,7 +72,6 @@ public class Turret : MonoBehaviour
                 if (run && playerStats != null)
                 {
                     PlayerMovement playerMovement = hit.transform.gameObject.GetComponent<PlayerMovement>();
-                    print("I detected something!");
                     playerStats.recieveDamage(50f);
                     playerMovement.knockback(Mathf.Cos(transform.eulerAngles.z * Mathf.Deg2Rad), Mathf.Sin(transform.eulerAngles.z * Mathf.Deg2Rad), 1000);
 
