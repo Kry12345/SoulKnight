@@ -15,27 +15,27 @@ public class InventoryInputs : MonoBehaviour
 	}
 	private void OnInventoryOne()
     {
-        playerStats.equipSlot(1);
+        playerStats.equipSlot(0);
     }
     private void OnInventoryTwo()
     {
-        playerStats.equipSlot(2);
+        playerStats.equipSlot(1);
     }
     private void OnInventoryThree()
     {
-        playerStats.equipSlot(3);
+        playerStats.equipSlot(2);
     }
     private void OnInventoryFour()
     {
-        playerStats.equipSlot(4);
+        playerStats.equipSlot(3);
     }
     private void OnInventoryFive()
     {
-        playerStats.equipSlot(5);
+        playerStats.equipSlot(4);
     }
     private void OnInventorySix()
     {
-        playerStats.equipSlot(6);
+        playerStats.equipSlot(5);
     }
     private void OnInventoryUp()
     {

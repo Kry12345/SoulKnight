@@ -6,7 +6,7 @@ public class Item : MonoBehaviour
 {
     [SerializeField] items item;
 
-    public items itemType()
+    public items itemType() // accessor method that returns the item type based off of the enum
     {
         return item;
     }
@@ -14,7 +14,7 @@ public class Item : MonoBehaviour
 
 
 
-public enum items
+public enum items // contains names of all the items in the game
 {
     empty,
     sword,
